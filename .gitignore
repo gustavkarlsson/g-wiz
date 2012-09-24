@@ -1,1 +1,11 @@
+# Ignore dot-files
+.*
+
+# But not the .gitignore file!
+!.gitignore
+
+# Ignore temporary editor files
+*~
+
+# Ignore maven target directory
 target/
