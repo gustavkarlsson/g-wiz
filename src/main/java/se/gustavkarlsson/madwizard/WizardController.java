@@ -10,16 +10,22 @@ public class WizardController {
 	private final Stack<WizardPage> pages = new Stack<WizardPage>();
 	private WizardPage currentPage = null;
 
-	public WizardController(WizardPage firstPage, Wizard wizard) {
+	public WizardController(Wizard wizard) {
 		if (wizard == null) {
 			throw new NullPointerException("wizard");
 		}
-		if (firstPage == null) {
-			throw new NullPointerException("firstPage");
-		}
 		this.wizard = wizard;
 		setupNavigationButtons();
-		showNextPage(firstPage);
+	}
+
+	public void startWizard(WizardPage startPage) {
+		if (startPage == null) {
+			throw new NullPointerException("startPage");
+		}
+		if (currentPage != null) {
+			throw new RuntimeException("Wizard already started.");
+		}
+		showNextPage(startPage);
 	}
 
 	private void setupNavigationButtons() {
@@ -30,7 +36,7 @@ public class WizardController {
 	public void updateButtons() {
 		wizard.getNextButton().setEnabled(currentPage.isReadyForNextPage());
 		wizard.getPreviousButton().setEnabled(!pages.isEmpty());
-		wizard.getFinishButton().setEnabled(currentPage.canFinish());
+		wizard.getFinishButton().setEnabled(currentPage.isReadyToFinish());
 	}
 
 	private void showNextPage(WizardPage nextPage) {
@@ -39,14 +45,19 @@ public class WizardController {
 			pages.push(currentPage);
 		}
 		currentPage = nextPage;
-		wizard.getWizardPageContainer().add(currentPage);
-		updateButtons();
+		updatePage();
 	}
 
 	private void showPreviousPage() {
 		wizard.getWizardPageContainer().remove(currentPage);
 		currentPage = pages.pop();
+		updatePage();
+	}
+
+	private void updatePage() {
+		currentPage.setWizardController(this);
 		wizard.getWizardPageContainer().add(currentPage);
+		wizard.getWizardPageContainer().validate();
 		updateButtons();
 	}
 

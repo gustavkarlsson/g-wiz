@@ -1,37 +1,92 @@
 package se.gustavkarlsson.madwizard;
 
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
+
 import javax.swing.JButton;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-
-import net.miginfocom.swing.MigLayout;
+import javax.swing.JSeparator;
+import javax.swing.SpringLayout;
 
 public class DefaultWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 1L;
 
-	private final JPanel wizardPageContainer;
-	private final JButton cancelButton;
-	private final JButton previousButton;
-	private final JButton nextButton;
-	private final JButton finishButton;
+	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
+	private final JButton cancelButton = new JButton("Cancel");
+	private final JButton previousButton = new JButton("Previous");
+	private final JButton nextButton = new JButton("Next");
+	private final JButton finishButton = new JButton("Finish");
 
 	public DefaultWizard() {
-		setLayout(new MigLayout("", "[right]"));
+		setupComponents();
+		layoutComponents();
 
-		wizardPageContainer = new JPanel();
-		add(wizardPageContainer, "wrap");
+		setMinimumSize(new Dimension(400, 150));
+		setLocation(200, 200);
+		setTitle("mad-wizards demo");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+	}
 
-		cancelButton = new JButton("Cancel");
-		add(cancelButton);
+	private void setupComponents() {
+		cancelButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				dispose();
+			}
+		});
 
-		previousButton = new JButton("Previous");
-		add(previousButton);
+		finishButton.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				JOptionPane.showMessageDialog(getContentPane(), "Wizard finished!");
+				dispose();
+			}
+		});
 
-		nextButton = new JButton("Next");
+		cancelButton.setMnemonic(KeyEvent.VK_C);
+		previousButton.setMnemonic(KeyEvent.VK_P);
+		nextButton.setMnemonic(KeyEvent.VK_N);
+		finishButton.setMnemonic(KeyEvent.VK_F);
+	}
+
+	private void layoutComponents() {
+		SpringLayout springLayout = new SpringLayout();
+		getContentPane().setLayout(springLayout);
+
+		int padding = 5;
+
+		springLayout.putConstraint(SpringLayout.EAST, wizardPageContainer, -padding, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, wizardPageContainer, padding, SpringLayout.NORTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.WEST, wizardPageContainer, padding, SpringLayout.WEST, getContentPane());
+		add(wizardPageContainer);
+
+		springLayout.putConstraint(SpringLayout.SOUTH, finishButton, -padding, SpringLayout.SOUTH, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, finishButton, -padding, SpringLayout.EAST, getContentPane());
+		add(finishButton);
+
+		springLayout.putConstraint(SpringLayout.NORTH, nextButton, 0, SpringLayout.NORTH, finishButton);
+		springLayout.putConstraint(SpringLayout.EAST, nextButton, -padding, SpringLayout.WEST, finishButton);
 		add(nextButton);
 
-		finishButton = new JButton("Finish");
-		add(finishButton);
+		springLayout.putConstraint(SpringLayout.SOUTH, previousButton, 0, SpringLayout.SOUTH, finishButton);
+		springLayout.putConstraint(SpringLayout.EAST, previousButton, -padding, SpringLayout.WEST, nextButton);
+		add(previousButton);
+
+		springLayout.putConstraint(SpringLayout.NORTH, cancelButton, 0, SpringLayout.NORTH, finishButton);
+		springLayout.putConstraint(SpringLayout.EAST, cancelButton, -padding, SpringLayout.WEST, previousButton);
+		add(cancelButton);
+
+		JSeparator separator = new JSeparator();
+		springLayout.putConstraint(SpringLayout.WEST, separator, 0, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, separator, 0, SpringLayout.EAST, getContentPane());
+		springLayout.putConstraint(SpringLayout.SOUTH, wizardPageContainer, -padding, SpringLayout.NORTH, separator);
+		springLayout.putConstraint(SpringLayout.SOUTH, separator, -padding, SpringLayout.NORTH, finishButton);
+		add(separator);
 	}
 
 	@Override
