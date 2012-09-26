@@ -13,4 +13,5 @@ public interface Wizard {
 	AbstractButton getNextButton();
 
 	AbstractButton getFinishButton();
+
 }

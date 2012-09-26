@@ -1,5 +1,7 @@
 package se.gustavkarlsson.madwizard;
 
+import java.awt.LayoutManager;
+
 import javax.swing.JPanel;
 
 public abstract class WizardPage extends JPanel {
@@ -7,19 +9,20 @@ public abstract class WizardPage extends JPanel {
 
 	private WizardController wizardController;
 
-	void setWizardController(WizardController wizardController) {
-		if (wizardController == null) {
-			throw new NullPointerException("wizardController");
-		}
-		this.wizardController = wizardController;
+	public WizardPage(LayoutManager layout, boolean isDoubleBuffered) {
+		super(layout, isDoubleBuffered);
 	}
 
-	protected abstract WizardPage getNextPage();
+	public WizardPage(LayoutManager layout) {
+		super(layout);
+	}
 
-	protected abstract boolean isCompleted();
+	public WizardPage(boolean isDoubleBuffered) {
+		super(isDoubleBuffered);
+	}
 
-	protected boolean canFinish() {
-		return false;
+	public WizardPage() {
+		super();
 	}
 
 	final boolean isReadyForNextPage() {
@@ -30,8 +33,23 @@ public abstract class WizardPage extends JPanel {
 		return isCompleted() && canFinish();
 	}
 
+	void setWizardController(WizardController wizardController) {
+		if (wizardController == null) {
+			throw new NullPointerException("wizardController");
+		}
+		this.wizardController = wizardController;
+	}
+
 	protected final void updateButtons() {
 		wizardController.updateButtons();
 	}
+
+	protected boolean canFinish() {
+		return false;
+	}
+
+	protected abstract WizardPage getNextPage();
+
+	protected abstract boolean isCompleted();
 
 }

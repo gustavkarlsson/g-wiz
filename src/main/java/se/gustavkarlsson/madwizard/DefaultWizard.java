@@ -2,6 +2,7 @@ package se.gustavkarlsson.madwizard;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
+import java.awt.GraphicsConfiguration;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -22,7 +23,27 @@ public class DefaultWizard extends JFrame implements Wizard {
 	private final JButton nextButton = new JButton("Next");
 	private final JButton finishButton = new JButton("Finish");
 
+	public DefaultWizard(String title, GraphicsConfiguration gc) {
+		super(title, gc);
+		createWizard();
+	}
+
+	public DefaultWizard(String title) {
+		super(title);
+		createWizard();
+	}
+
+	public DefaultWizard(GraphicsConfiguration gc) {
+		super(gc);
+		createWizard();
+	}
+
 	public DefaultWizard() {
+		super();
+		createWizard();
+	}
+
+	private void createWizard() {
 		setupComponents();
 		layoutComponents();
 
@@ -60,9 +81,12 @@ public class DefaultWizard extends JFrame implements Wizard {
 
 		int padding = 5;
 
-		springLayout.putConstraint(SpringLayout.EAST, wizardPageContainer, -padding, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, wizardPageContainer, padding, SpringLayout.NORTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.WEST, wizardPageContainer, padding, SpringLayout.WEST, getContentPane());
+		springLayout.putConstraint(SpringLayout.EAST, wizardPageContainer, -padding, SpringLayout.EAST,
+				getContentPane());
+		springLayout.putConstraint(SpringLayout.NORTH, wizardPageContainer, padding, SpringLayout.NORTH,
+				getContentPane());
+		springLayout
+		.putConstraint(SpringLayout.WEST, wizardPageContainer, padding, SpringLayout.WEST, getContentPane());
 		add(wizardPageContainer);
 
 		springLayout.putConstraint(SpringLayout.SOUTH, finishButton, -padding, SpringLayout.SOUTH, getContentPane());
@@ -108,4 +132,5 @@ public class DefaultWizard extends JFrame implements Wizard {
 	public JButton getFinishButton() {
 		return finishButton;
 	}
+
 }

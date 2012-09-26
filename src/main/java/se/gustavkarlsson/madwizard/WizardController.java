@@ -11,32 +11,13 @@ public class WizardController {
 	private WizardPage currentPage = null;
 
 	public WizardController(Wizard wizard) {
-		if (wizard == null) {
-			throw new NullPointerException("wizard");
-		}
 		this.wizard = wizard;
 		setupNavigationButtons();
-	}
-
-	public void startWizard(WizardPage startPage) {
-		if (startPage == null) {
-			throw new NullPointerException("startPage");
-		}
-		if (currentPage != null) {
-			throw new RuntimeException("Wizard already started.");
-		}
-		showNextPage(startPage);
 	}
 
 	private void setupNavigationButtons() {
 		wizard.getNextButton().addActionListener(new NextPageListener());
 		wizard.getPreviousButton().addActionListener(new PreviousPageListener());
-	}
-
-	public void updateButtons() {
-		wizard.getNextButton().setEnabled(currentPage.isReadyForNextPage());
-		wizard.getPreviousButton().setEnabled(!pages.isEmpty());
-		wizard.getFinishButton().setEnabled(currentPage.isReadyToFinish());
 	}
 
 	private void showNextPage(WizardPage nextPage) {
@@ -61,6 +42,21 @@ public class WizardController {
 		updateButtons();
 	}
 
+	public void startWizard(WizardPage startPage) {
+		if (currentPage != null) {
+			wizard.getWizardPageContainer().remove(currentPage);
+			pages.clear();
+			currentPage = null;
+		}
+		showNextPage(startPage);
+	}
+
+	public void updateButtons() {
+		wizard.getNextButton().setEnabled(currentPage.isReadyForNextPage());
+		wizard.getPreviousButton().setEnabled(!pages.isEmpty());
+		wizard.getFinishButton().setEnabled(currentPage.isReadyToFinish());
+	}
+
 	private class NextPageListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -74,4 +70,5 @@ public class WizardController {
 			showPreviousPage();
 		}
 	}
+
 }
