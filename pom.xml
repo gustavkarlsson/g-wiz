@@ -22,7 +22,7 @@
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-	
+
 	<build>
 		<plugins>
 			<plugin>
@@ -32,7 +32,8 @@
 					<source>1.6</source>
 					<target>1.6</target>
 				</configuration>
-			</plugin><plugin>
+			</plugin>
+			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-javadoc-plugin</artifactId>
 				<executions>
@@ -74,7 +75,7 @@
 			</plugin>
 		</plugins>
 	</build>
-	
+
 	<issueManagement>
 		<system>Github Issues</system>
 		<url>https://github.com/gustavkarlsson/g-wiz/issues</url>
@@ -85,4 +86,13 @@
 		<connection>scm:git:git://github.com/gustavkarlsson/g-wiz.git</connection>
 		<developerConnection>scm:git:git@github.com:gustavkarlsson/g-wiz.git</developerConnection>
 	</scm>
+
+	<developers>
+		<developer>
+			<email>gustav.karlsson@gmail.com</email>
+			<name>Gustav Karlsson</name>
+			<url>https://github.com/gustavkarlsson</url>
+			<id>gustavkarlsson</id>
+		</developer>
+	</developers>
 </project>
