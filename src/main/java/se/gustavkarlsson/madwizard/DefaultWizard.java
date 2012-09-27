@@ -19,7 +19,6 @@ import javax.swing.SpringLayout;
  * navigation buttons at the bottom.
  * 
  * @author Gustav
- * 
  */
 public class DefaultWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
