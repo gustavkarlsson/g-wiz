@@ -1,9 +1,9 @@
-package se.gustavkarlsson.madwizard.demo;
+package se.gustavkarlsson.gwiz.demo;
 
 import java.awt.FlowLayout;
 import java.awt.Label;
 
-import se.gustavkarlsson.madwizard.WizardPage;
+import se.gustavkarlsson.gwiz.WizardPage;
 
 public class StartPage extends WizardPage {
 	private static final long serialVersionUID = 1L;

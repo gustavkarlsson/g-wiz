@@ -1,4 +1,4 @@
-package se.gustavkarlsson.madwizard.demo;
+package se.gustavkarlsson.gwiz.demo;
 
 import java.awt.Checkbox;
 import java.awt.FlowLayout;
@@ -6,7 +6,7 @@ import java.awt.Label;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import se.gustavkarlsson.madwizard.WizardPage;
+import se.gustavkarlsson.gwiz.WizardPage;
 
 public class MiddlePage extends WizardPage {
 	private static final long serialVersionUID = 1L;

@@ -1,8 +1,8 @@
-package se.gustavkarlsson.madwizard.demo;
+package se.gustavkarlsson.gwiz.demo;
 
-import se.gustavkarlsson.madwizard.DefaultWizard;
-import se.gustavkarlsson.madwizard.WizardController;
-import se.gustavkarlsson.madwizard.WizardPage;
+import se.gustavkarlsson.gwiz.DefaultWizard;
+import se.gustavkarlsson.gwiz.WizardController;
+import se.gustavkarlsson.gwiz.WizardPage;
 
 /**
  * Hello world!

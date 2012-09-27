@@ -1,4 +1,4 @@
-package se.gustavkarlsson.madwizard.demo;
+package se.gustavkarlsson.gwiz.demo;
 
 import java.awt.FlowLayout;
 import java.awt.Label;
@@ -6,7 +6,7 @@ import java.awt.TextField;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 
-import se.gustavkarlsson.madwizard.WizardPage;
+import se.gustavkarlsson.gwiz.WizardPage;
 
 public class EndPage extends WizardPage {
 	private static final long serialVersionUID = 1L;

@@ -1,4 +1,4 @@
-package se.gustavkarlsson.madwizard;
+package se.gustavkarlsson.gwiz;
 
 import java.awt.Container;
 
