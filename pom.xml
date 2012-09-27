@@ -3,12 +3,12 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>se.gustavkarlsson</groupId>
-	<artifactId>mad-wizards</artifactId>
+	<artifactId>g-wiz</artifactId>
 	<version>1.0.0-SNAPSHOT</version>
 	<packaging>jar</packaging>
 
-	<name>mad-wizards</name>
-	<url>https://github.com/mrmadman/mad-wizards</url>
+	<name>g-wiz</name>
+	<url>https://github.com/gustavkarlsson/g-wiz</url>
 
 	<properties>
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -74,10 +74,15 @@
 			</plugin>
 		</plugins>
 	</build>
+	
+	<issueManagement>
+		<system>Github Issues</system>
+		<url>https://github.com/gustavkarlsson/g-wiz/issues</url>
+	</issueManagement>
 
 	<scm>
-		<url>https://github.com/mrmadman/mad-wizards</url>
-		<connection>scm:git:git://github.com/mrmadman/mad-wizards.git</connection>
-		<developerConnection>scm:git:git@github.com:mrmadman/mad-wizards.git</developerConnection>
+		<url>https://github.com/gustavkarlsson/g-wiz</url>
+		<connection>scm:git:git://github.com/gustavkarlsson/g-wiz.git</connection>
+		<developerConnection>scm:git:git@github.com:gustavkarlsson/g-wiz.git</developerConnection>
 	</scm>
 </project>
