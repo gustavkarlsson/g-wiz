@@ -14,8 +14,15 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 
+/**
+ * A very simple {@link Wizard} implementation that suits the most basic needs. Based on a {@link JFrame} and has
+ * navigation buttons at the bottom.
+ * 
+ * @author Gustav
+ * 
+ */
 public class DefaultWizard extends JFrame implements Wizard {
-	private static final long serialVersionUID = 1L;
+	private static final long serialVersionUID = 2818290889333414291L;
 
 	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
 	private final JButton cancelButton = new JButton("Cancel");
@@ -23,27 +30,58 @@ public class DefaultWizard extends JFrame implements Wizard {
 	private final JButton nextButton = new JButton("Next");
 	private final JButton finishButton = new JButton("Finish");
 
+	/**
+	 * Creates a <code>DefaultWizard</code> with a title and {@link GraphicsConfiguration}.
+	 * 
+	 * @param title
+	 *            the title of the frame
+	 * @param gc
+	 *            the {@link GraphicsConfiguration} of the frame
+	 * @see JFrame
+	 */
 	public DefaultWizard(String title, GraphicsConfiguration gc) {
 		super(title, gc);
-		createWizard();
+		setupWizard();
 	}
 
+	/**
+	 * Creates a <code>DefaultWizard</code> with a title.
+	 * 
+	 * @param title
+	 *            the title of the frame
+	 * @see JFrame
+	 */
 	public DefaultWizard(String title) {
 		super(title);
-		createWizard();
+		setupWizard();
 	}
 
+	/**
+	 * Creates a <code>DefaultWizard</code> with a {@link GraphicsConfiguration}.
+	 * 
+	 * @param gc
+	 *            the {@link GraphicsConfiguration} of the frame
+	 * @see JFrame
+	 */
 	public DefaultWizard(GraphicsConfiguration gc) {
 		super(gc);
-		createWizard();
+		setupWizard();
 	}
 
+	/**
+	 * Creates a <code>DefaultWizard</code>.
+	 * 
+	 * @see JFrame
+	 */
 	public DefaultWizard() {
 		super();
-		createWizard();
+		setupWizard();
 	}
 
-	private void createWizard() {
+	/**
+	 * Sets up wizard upon construction.
+	 */
+	private void setupWizard() {
 		setupComponents();
 		layoutComponents();
 
@@ -53,6 +91,9 @@ public class DefaultWizard extends JFrame implements Wizard {
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
+	/**
+	 * Sets up the components of the wizard with listeners and mnemonics.
+	 */
 	private void setupComponents() {
 		cancelButton.addActionListener(new ActionListener() {
 			@Override
@@ -75,6 +116,9 @@ public class DefaultWizard extends JFrame implements Wizard {
 		finishButton.setMnemonic(KeyEvent.VK_F);
 	}
 
+	/**
+	 * Lays out the components in the wizards content pane.
+	 */
 	private void layoutComponents() {
 		SpringLayout springLayout = new SpringLayout();
 		getContentPane().setLayout(springLayout);
