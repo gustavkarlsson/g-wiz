@@ -3,12 +3,12 @@ package se.gustavkarlsson.gwiz.demo;
 import java.awt.FlowLayout;
 import java.awt.Label;
 
-import se.gustavkarlsson.gwiz.WizardPage;
+import se.gustavkarlsson.gwiz.AbstractWizardPage;
 
-public class StartPage extends WizardPage {
+public class StartPage extends AbstractWizardPage {
 	private static final long serialVersionUID = 1L;
 
-	private final WizardPage nextPage = new MiddlePage();
+	private final AbstractWizardPage nextPage = new MiddlePage();
 
 	public StartPage() {
 		setLayout(new FlowLayout());
@@ -21,8 +21,13 @@ public class StartPage extends WizardPage {
 	}
 
 	@Override
-	protected WizardPage getNextPage() {
+	protected AbstractWizardPage getNextPage() {
 		return nextPage;
+	}
+
+	@Override
+	protected boolean canFinish() {
+		return false;
 	}
 
 }

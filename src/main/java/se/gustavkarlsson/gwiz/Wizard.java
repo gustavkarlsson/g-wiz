@@ -7,15 +7,15 @@ import javax.swing.AbstractButton;
 /**
  * An interface for creating wizards.
  * 
- * @author Gustav
+ * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
 public interface Wizard {
 
 	/**
-	 * Gets the container where {@link WizardPage}s are contained. This is used by the {@link WizardController} to
-	 * (un)set wizard pages.
+	 * Gets the container where wizard pages are contained. This is used by the {@link WizardController} to (un)set
+	 * wizard pages.
 	 * 
-	 * @return the {@link WizardPage} container
+	 * @return the {@link AbstractWizardPage} container
 	 */
 	Container getWizardPageContainer();
 
@@ -29,7 +29,7 @@ public interface Wizard {
 
 	/**
 	 * Gets the navigation button for "next". This is used by the {@link WizardController} to navigate forward in the
-	 * wizard. Also needed so that the {@link WizardController} can enable/disable the button.
+	 * wizard. Also used by {@link WizardController} to enable/disable the button.
 	 * 
 	 * @return the "next" button
 	 */

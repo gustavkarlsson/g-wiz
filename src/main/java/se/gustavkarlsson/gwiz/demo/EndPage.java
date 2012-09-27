@@ -6,9 +6,9 @@ import java.awt.TextField;
 import java.awt.event.TextEvent;
 import java.awt.event.TextListener;
 
-import se.gustavkarlsson.gwiz.WizardPage;
+import se.gustavkarlsson.gwiz.AbstractWizardPage;
 
-public class EndPage extends WizardPage {
+public class EndPage extends AbstractWizardPage {
 	private static final long serialVersionUID = 1L;
 
 	private final TextField finishTextField = new TextField("no", 5);
@@ -32,7 +32,7 @@ public class EndPage extends WizardPage {
 	}
 
 	@Override
-	protected WizardPage getNextPage() {
+	protected AbstractWizardPage getNextPage() {
 		return null;
 	}
 

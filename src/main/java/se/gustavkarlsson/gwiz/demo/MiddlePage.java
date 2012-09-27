@@ -6,12 +6,12 @@ import java.awt.Label;
 import java.awt.event.ItemEvent;
 import java.awt.event.ItemListener;
 
-import se.gustavkarlsson.gwiz.WizardPage;
+import se.gustavkarlsson.gwiz.AbstractWizardPage;
 
-public class MiddlePage extends WizardPage {
+public class MiddlePage extends AbstractWizardPage {
 	private static final long serialVersionUID = 1L;
 
-	private final WizardPage nextPage = new EndPage();
+	private final AbstractWizardPage nextPage = new EndPage();
 	private final Checkbox continueCheckbox = new Checkbox("I want to continue!", false);
 
 	public MiddlePage() {
@@ -33,8 +33,13 @@ public class MiddlePage extends WizardPage {
 	}
 
 	@Override
-	protected WizardPage getNextPage() {
+	protected AbstractWizardPage getNextPage() {
 		return nextPage;
+	}
+
+	@Override
+	protected boolean canFinish() {
+		return false;
 	}
 
 }

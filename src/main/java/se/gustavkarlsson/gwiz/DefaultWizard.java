@@ -15,10 +15,10 @@ import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 
 /**
- * A very simple {@link Wizard} implementation that suits the most basic needs. Based on a {@link JFrame} and has
+ * A very simple <code>Wizard</code> implementation that suits the most basic needs. Extends {@link JFrame} and has
  * navigation buttons at the bottom.
  * 
- * @author Gustav
+ * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
 public class DefaultWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
@@ -30,12 +30,12 @@ public class DefaultWizard extends JFrame implements Wizard {
 	private final JButton finishButton = new JButton("Finish");
 
 	/**
-	 * Creates a <code>DefaultWizard</code> with a title and {@link GraphicsConfiguration}.
+	 * Creates a <code>DefaultWizard</code> with a title and <code>GraphicsConfiguration</code>.
 	 * 
 	 * @param title
 	 *            the title of the frame
 	 * @param gc
-	 *            the {@link GraphicsConfiguration} of the frame
+	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
 	public DefaultWizard(String title, GraphicsConfiguration gc) {
@@ -59,7 +59,7 @@ public class DefaultWizard extends JFrame implements Wizard {
 	 * Creates a <code>DefaultWizard</code> with a {@link GraphicsConfiguration}.
 	 * 
 	 * @param gc
-	 *            the {@link GraphicsConfiguration} of the frame
+	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
 	public DefaultWizard(GraphicsConfiguration gc) {

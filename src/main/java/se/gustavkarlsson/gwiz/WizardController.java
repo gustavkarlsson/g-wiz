@@ -5,19 +5,19 @@ import java.awt.event.ActionListener;
 import java.util.Stack;
 
 /**
- * A controller for a {@link Wizard}. Used to control navigation, setting the correct {@link WizardPage}, and keeping
- * tack of history.
+ * A controller for a {@link Wizard}. Used to control navigation, setting the correct {@link AbstractWizardPage}, and
+ * keeping tack of history.
  * 
- * @author Gustav
+ * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
 public class WizardController {
 
 	private final Wizard wizard;
-	private final Stack<WizardPage> pageHistory = new Stack<WizardPage>();
-	private WizardPage currentPage = null;
+	private final Stack<AbstractWizardPage> pageHistory = new Stack<AbstractWizardPage>();
+	private AbstractWizardPage currentPage = null;
 
 	/**
-	 * Creates a wizard controller for a {@link Wizard}.
+	 * Creates a wizard controller for a wizard.
 	 * 
 	 * @param wizard
 	 *            the wizard that this controller controls
@@ -28,7 +28,7 @@ public class WizardController {
 	}
 
 	/**
-	 * Sets up navigation buttons with listeners.
+	 * Sets up navigation buttons with listeners for navigating forwards/backwards.
 	 */
 	private void setupNavigationButtons() {
 		wizard.getNextButton().addActionListener(new NextPageListener());
@@ -36,33 +36,33 @@ public class WizardController {
 	}
 
 	/**
-	 * Sets a new page in the {@link Wizard} and puts the previous in the history.
+	 * Sets a new page in the wizard and puts the previous in the history.
 	 * 
 	 * @param nextPage
 	 *            the page to set
 	 */
-	private void showNextPage(WizardPage nextPage) {
+	private void showNextPage(AbstractWizardPage nextPage) {
 		if (currentPage != null) {
 			wizard.getWizardPageContainer().remove(currentPage);
 			pageHistory.push(currentPage);
 		}
 		currentPage = nextPage;
-		updatePage();
+		setPage();
 	}
 
 	/**
-	 * Sets the previous page from the history in the {@link Wizard}.
+	 * Sets the previous page from the history in the wizard.
 	 */
 	private void showPreviousPage() {
 		wizard.getWizardPageContainer().remove(currentPage);
 		currentPage = pageHistory.pop();
-		updatePage();
+		setPage();
 	}
 
 	/**
-	 * Updates the {@link WizardPage} in the {@link Wizard}.
+	 * Updates the wizard with a new current page.
 	 */
-	private void updatePage() {
+	private void setPage() {
 		currentPage.setWizardController(this);
 		wizard.getWizardPageContainer().add(currentPage);
 		wizard.getWizardPageContainer().validate();
@@ -70,12 +70,12 @@ public class WizardController {
 	}
 
 	/**
-	 * Starts (or restarts) the {@link Wizard} with the given start {@link WizardPage}.
+	 * Starts (or restarts) the wizard with the given start page.
 	 * 
 	 * @param startPage
 	 *            the page to start (or restart) the wizard with
 	 */
-	public void startWizard(WizardPage startPage) {
+	public void startWizard(AbstractWizardPage startPage) {
 		if (currentPage != null) {
 			wizard.getWizardPageContainer().remove(currentPage);
 			pageHistory.clear();
@@ -94,9 +94,9 @@ public class WizardController {
 	}
 
 	/**
-	 * A listener that shows the next page in the {@link Wizard}.
+	 * A listener that shows the next page in the wizard.
 	 * 
-	 * @author Gustav
+	 * @author Gustav Karlsson <gustav.karlsson@gmail.com>
 	 */
 	private class NextPageListener implements ActionListener {
 		@Override
@@ -106,9 +106,9 @@ public class WizardController {
 	}
 
 	/**
-	 * A listener that shows the previous page in the {@link Wizard}.
+	 * A listener that shows the previous page in the wizard.
 	 * 
-	 * @author Gustav
+	 * @author Gustav Karlsson <gustav.karlsson@gmail.com>
 	 */
 	private class PreviousPageListener implements ActionListener {
 		@Override
