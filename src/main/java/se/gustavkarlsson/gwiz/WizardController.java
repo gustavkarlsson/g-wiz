@@ -12,7 +12,13 @@ package se.gustavkarlsson.gwiz;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.EmptyStackException;
 import java.util.Stack;
+
+import javax.swing.AbstractButton;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * A controller for a {@link Wizard}. Used to control navigation, setting the correct {@link AbstractWizardPage}, and
@@ -21,6 +27,7 @@ import java.util.Stack;
  * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
 public class WizardController {
+	private static final Logger logger = LoggerFactory.getLogger(WizardController.class);
 
 	private final Wizard wizard;
 	private final Stack<AbstractWizardPage> pageHistory = new Stack<AbstractWizardPage>();
@@ -33,25 +40,26 @@ public class WizardController {
 	 *            the wizard that this controller controls
 	 */
 	public WizardController(Wizard wizard) {
+		if (wizard == null) {
+			RuntimeException e = new IllegalArgumentException("wizard can't be null");
+			logger.error("wizard is null.", e);
+			throw e;
+		}
 		this.wizard = wizard;
 		setupNavigationButtons();
 	}
 
-	/**
-	 * Sets up navigation buttons with listeners for navigating forwards/backwards.
-	 */
 	private void setupNavigationButtons() {
 		wizard.getNextButton().addActionListener(new NextPageListener());
 		wizard.getPreviousButton().addActionListener(new PreviousPageListener());
 	}
 
-	/**
-	 * Sets a new page in the wizard and puts the previous in the history.
-	 * 
-	 * @param nextPage
-	 *            the page to set
-	 */
 	private void showNextPage(AbstractWizardPage nextPage) {
+		if (nextPage == null) {
+			logger.error("Next page is null. Updating buttons and ignoring request.");
+			updateButtons();
+			return;
+		}
 		if (currentPage != null) {
 			wizard.getWizardPageContainer().remove(currentPage);
 			pageHistory.push(currentPage);
@@ -60,18 +68,24 @@ public class WizardController {
 		setPage();
 	}
 
-	/**
-	 * Sets the previous page from the history in the wizard.
-	 */
+	public AbstractWizardPage getCurrentPage() {
+		return currentPage;
+	}
+
 	private void showPreviousPage() {
+		AbstractWizardPage previousPage;
+		try {
+			previousPage = pageHistory.pop();
+		} catch (EmptyStackException e) {
+			logger.error("Previous page is null. Updating buttons and ignoring request.");
+			updateButtons();
+			return;
+		}
 		wizard.getWizardPageContainer().remove(currentPage);
-		currentPage = pageHistory.pop();
+		currentPage = previousPage;
 		setPage();
 	}
 
-	/**
-	 * Updates the wizard with a new current page.
-	 */
 	private void setPage() {
 		currentPage.setWizardController(this);
 		wizard.getWizardPageContainer().add(currentPage);
@@ -86,6 +100,11 @@ public class WizardController {
 	 *            the page to start (or restart) the wizard with
 	 */
 	public void startWizard(AbstractWizardPage startPage) {
+		if (startPage == null) {
+			RuntimeException e = new IllegalArgumentException("startPage can't be null");
+			logger.error("startPage is null.", e);
+			throw e;
+		}
 		if (currentPage != null) {
 			wizard.getWizardPageContainer().remove(currentPage);
 			pageHistory.clear();
@@ -98,16 +117,20 @@ public class WizardController {
 	 * Enables/disables the "next", "previous", and "finish" buttons based on the current page.
 	 */
 	public void updateButtons() {
-		wizard.getNextButton().setEnabled(currentPage.isReadyForNextPage());
-		wizard.getPreviousButton().setEnabled(!pageHistory.isEmpty());
-		wizard.getFinishButton().setEnabled(currentPage.isReadyToFinish());
+		AbstractButton nextButton = wizard.getNextButton();
+		if (nextButton != null) {
+			nextButton.setEnabled(currentPage.isReadyForNextPage());
+		}
+		AbstractButton previousButton = wizard.getPreviousButton();
+		if (previousButton != null) {
+			previousButton.setEnabled(!pageHistory.isEmpty());
+		}
+		AbstractButton finishButton = wizard.getFinishButton();
+		if (finishButton != null) {
+			finishButton.setEnabled(currentPage.isReadyToFinish());
+		}
 	}
 
-	/**
-	 * A listener that shows the next page in the wizard.
-	 * 
-	 * @author Gustav Karlsson <gustav.karlsson@gmail.com>
-	 */
 	private class NextPageListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
@@ -115,11 +138,6 @@ public class WizardController {
 		}
 	}
 
-	/**
-	 * A listener that shows the previous page in the wizard.
-	 * 
-	 * @author Gustav Karlsson <gustav.karlsson@gmail.com>
-	 */
 	private class PreviousPageListener implements ActionListener {
 		@Override
 		public void actionPerformed(ActionEvent e) {
