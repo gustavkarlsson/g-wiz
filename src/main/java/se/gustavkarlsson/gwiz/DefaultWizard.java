@@ -96,7 +96,6 @@ public class DefaultWizard extends JFrame implements Wizard {
 
 		setMinimumSize(new Dimension(400, 150));
 		setLocation(200, 200);
-		setTitle("mad-wizards demo");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
