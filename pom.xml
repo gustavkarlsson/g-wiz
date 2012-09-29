@@ -25,13 +25,13 @@
 	
 	<name>g-wiz</name>
 	<url>https://github.com/gustavkarlsson/g-wiz</url>
-	<description>A wizard API for java</description>
+	<description>A Java Swing Wizard API</description>
 
 	<developers>
 		<developer>
 			<email>gustav.karlsson@gmail.com</email>
 			<name>Gustav Karlsson</name>
-			<url>https://github.com/gustavkarlsson</url>
+			<url>http://gustavkarlsson.se</url>
 			<id>gustavkarlsson</id>
 		</developer>
 	</developers>

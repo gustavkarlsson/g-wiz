@@ -1,4 +1,4 @@
 g-wiz
 ===========
 
-Wizard API for Java Swing
+A Java Swing Wizard API
