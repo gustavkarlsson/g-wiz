@@ -50,9 +50,9 @@
 	</issueManagement>
 
 	<scm>
-		<url>scm:git:git://github.com/gustavkarlsson/g-wiz.git</url>
 		<connection>scm:git:git://github.com/gustavkarlsson/g-wiz.git</connection>
 		<developerConnection>scm:git:ssh://github.com/gustavkarlsson/g-wiz.git</developerConnection>
+		<url>https://github.com/gustavkarlsson/g-wiz</url>
 	</scm>
 
 	<properties>
