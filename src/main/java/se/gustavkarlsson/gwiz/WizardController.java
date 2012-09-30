@@ -10,6 +10,7 @@
  ******************************************************************************/
 package se.gustavkarlsson.gwiz;
 
+import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.EmptyStackException;
@@ -61,11 +62,9 @@ public class WizardController {
 			return;
 		}
 		if (currentPage != null) {
-			wizard.getWizardPageContainer().remove(currentPage);
 			pageHistory.push(currentPage);
 		}
-		currentPage = nextPage;
-		setPage();
+		setPage(nextPage);
 	}
 
 	public AbstractWizardPage getCurrentPage() {
@@ -81,15 +80,19 @@ public class WizardController {
 			updateButtons();
 			return;
 		}
-		wizard.getWizardPageContainer().remove(currentPage);
-		currentPage = previousPage;
-		setPage();
+		setPage(previousPage);
 	}
 
-	private void setPage() {
+	private void setPage(AbstractWizardPage newPage) {
+		Container wizardPageContainer = wizard.getWizardPageContainer();
+		if (currentPage != null) {
+			wizardPageContainer.remove(currentPage);
+		}
+		currentPage = newPage;
 		currentPage.setWizardController(this);
-		wizard.getWizardPageContainer().add(currentPage);
-		wizard.getWizardPageContainer().validate();
+		wizardPageContainer.add(currentPage);
+		wizardPageContainer.validate();
+		wizardPageContainer.repaint();
 		updateButtons();
 	}
 
