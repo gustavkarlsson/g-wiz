@@ -62,3 +62,16 @@ The order of the wizard pages is not determined by the wizard itself or some pre
 The page history consists of a stack of previously visited pages.
 
 Everytime the user presses "Next", the current page is put on top of the stack and it's `getNextPage()` is called. The return page is then set as the new "current page". The "Previous" button however, will always take you back to the last page by "popping" the stack and setting that page as the new "current page".
+
+
+## Download
+The best way to use g-wiz is with [Apache Maven](http://maven.apache.org). Just add this to the <dependencies> in your `pom.xml`:
+
+	<dependency>
+		<groupId>se.gustavkarlsson</groupId>
+		<artifactId>g-wiz</artifactId>
+		<version>1.0.0</version>
+	</dependency>
+
+
+If you just want to download the files manually, you can find jars, sources, and javadoc in the [Sonatype OSS Repository](https://oss.sonatype.org/content/groups/public/se/gustavkarlsson/g-wiz/).
