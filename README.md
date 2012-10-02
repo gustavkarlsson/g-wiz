@@ -7,15 +7,14 @@ g-wiz is an easy to use Wizard API for Java. I made it to suit my own needs, but
 
 
 ## Getting started
-Getting started with g-wiz is really simple. It can be done in 4 short steps.
+Getting started with g-wiz is really simple. It can be done in 3 short steps.
 
-1.	Implement a `Wizard` (extending `AbstractJFrameWizard` is the easiest way)
-2.	Implement a couple of pages by extending `AbstractWizardPage`.
-3.	Initialize the wizard:<p />
+1.	Implement a couple of pages (here called `MyWizardPage`) by extending `AbstractWizardPage`.
+2.	Initialize the wizard and controller (here we use a standard implementation called `JFrameWizard`):
 
-		MyWizard wizard = MyWizard()
+		JFrameWizard wizard = JFrameWizard("My new wizard")
 		WizardController controller = new WizardController(wizard);
-4.	Start the wizard:
+3.	Start the wizard using the controller:
 
 		AbstractWizardPage startPage = new MyStartPage();
 		controller.startWizard(startPage);
