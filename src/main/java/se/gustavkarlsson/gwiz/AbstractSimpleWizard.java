@@ -30,7 +30,7 @@ import javax.swing.SpringLayout;
  * 
  * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
-public class DefaultWizard extends JFrame implements Wizard {
+public class AbstractSimpleWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
 
 	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
@@ -40,7 +40,7 @@ public class DefaultWizard extends JFrame implements Wizard {
 	private final JButton finishButton = new JButton("Finish");
 
 	/**
-	 * Creates a <code>DefaultWizard</code> with a title and <code>GraphicsConfiguration</code>.
+	 * Creates an <code>AbstractSimpleWizard</code> with a title and <code>GraphicsConfiguration</code>.
 	 * 
 	 * @param title
 	 *            the title of the frame
@@ -48,41 +48,41 @@ public class DefaultWizard extends JFrame implements Wizard {
 	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
-	public DefaultWizard(String title, GraphicsConfiguration gc) {
+	public AbstractSimpleWizard(String title, GraphicsConfiguration gc) {
 		super(title, gc);
 		setupWizard();
 	}
 
 	/**
-	 * Creates a <code>DefaultWizard</code> with a title.
+	 * Creates an <code>AbstractSimpleWizard</code> with a title.
 	 * 
 	 * @param title
 	 *            the title of the frame
 	 * @see JFrame
 	 */
-	public DefaultWizard(String title) {
+	public AbstractSimpleWizard(String title) {
 		super(title);
 		setupWizard();
 	}
 
 	/**
-	 * Creates a <code>DefaultWizard</code> with a {@link GraphicsConfiguration}.
+	 * Creates an <code>AbstractSimpleWizard</code> with a {@link GraphicsConfiguration}.
 	 * 
 	 * @param gc
 	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
-	public DefaultWizard(GraphicsConfiguration gc) {
+	public AbstractSimpleWizard(GraphicsConfiguration gc) {
 		super(gc);
 		setupWizard();
 	}
 
 	/**
-	 * Creates a <code>DefaultWizard</code>.
+	 * Creates an <code>AbstractSimpleWizard</code>.
 	 * 
 	 * @see JFrame
 	 */
-	public DefaultWizard() {
+	public AbstractSimpleWizard() {
 		super();
 		setupWizard();
 	}
