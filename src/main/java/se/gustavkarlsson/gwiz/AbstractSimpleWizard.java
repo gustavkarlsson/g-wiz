@@ -31,7 +31,7 @@ import javax.swing.SpringLayout;
  * 
  * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
-public class AbstractSimpleWizard extends JFrame implements Wizard {
+public abstract class AbstractSimpleWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
 
 	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
