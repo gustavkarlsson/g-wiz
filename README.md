@@ -45,4 +45,18 @@ Represents a page in the wizard. Implement it as you would a regular `JPanel`.
 
 The `getNextPage()` method is used by the `WizardController` so it knows where pressing "Next" will take the user. It  can get called multiple times to check whether there is a "next page" to show, so it's probably not a good idea to create a new "next page" every time it's called.
 
-`isCancelAllowed()`, `isPreviousAllowed()`, `isNextAllowed()`, and `isFinishAllowed()` are pretty self explanatory and they are used by `WizardController` to update the navigation buttons.
+`isCancelAllowed()`, `isPreviousAllowed()`, `isNextAllowed()`, and `isFinishAllowed()` controls the navigation buttons (`WizardController` calls these to enable/disable the buttons) and should be self explanatory.
+
+
+## Structure
+This section explains how things like page order and history works.
+
+
+### Page Order
+The order of the wizard pages is not determined by the wizard itself or some pre created list; it depends entirely on the pages themself. Every page must implement `getNextPage()` which should always return the next page in the wizard (`null` is a valid return value).
+
+
+### Page History
+The page history consists of a stack of previously visited pages.
+
+Everytime the user presses "Next", the current page is put on top of the stack and it's `getNextPage()` is called. The return page is then set as the new "current page". The "Previous" button however, will always take you back to the last page by "popping" the stack and setting that page as the new "current page".
