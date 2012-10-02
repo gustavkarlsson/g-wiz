@@ -11,8 +11,8 @@
 package se.gustavkarlsson.gwiz.wizards;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GraphicsConfiguration;
+import java.awt.GridLayout;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -36,7 +36,7 @@ import se.gustavkarlsson.gwiz.Wizard;
 public class JFrameWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
 
-	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
+	private final JPanel wizardPageContainer = new JPanel(new GridLayout(1, 1));
 	private final JButton cancelButton = new JButton("Cancel");
 	private final JButton previousButton = new JButton("Previous");
 	private final JButton nextButton = new JButton("Next");
@@ -97,7 +97,7 @@ public class JFrameWizard extends JFrame implements Wizard {
 		setupComponents();
 		layoutComponents();
 
-		setMinimumSize(new Dimension(400, 150));
+		setMinimumSize(new Dimension(400, 350));
 		setLocation(200, 200);
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
