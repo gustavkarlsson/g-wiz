@@ -13,7 +13,9 @@ package se.gustavkarlsson.gwiz;
 import java.awt.Container;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
 import java.util.EmptyStackException;
+import java.util.List;
 import java.util.Stack;
 
 import javax.swing.AbstractButton;
@@ -49,32 +51,42 @@ public class WizardController {
 		wizard.getPreviousButton().addActionListener(new PreviousPageListener());
 	}
 
-	private void showNextPage(AbstractWizardPage nextPage) {
+	/**
+	 * Sets the current page of this wizard to the specified page and adds the previous "current page" to the history.
+	 * 
+	 * @param nextPage
+	 *            the page to set as the current page
+	 * @return <code>true</code> if the current page was changed, otherwise <code>false</code>
+	 */
+	public boolean showNextPage(AbstractWizardPage nextPage) {
 		if (nextPage == null) {
 			// Next page is null. Updating buttons and ignoring request.
 			updateButtons();
-			return;
+			return false;
 		}
 		if (currentPage != null) {
 			pageHistory.push(currentPage);
 		}
 		setPage(nextPage);
+		return true;
 	}
 
-	public AbstractWizardPage getCurrentPage() {
-		return currentPage;
-	}
-
-	private void showPreviousPage() {
+	/**
+	 * Sets the current page of this wizard to the previous page (if one exists) and removes it from the history.
+	 * 
+	 * @return <code>true</code> if the current page was changed, otherwise <code>false</code>
+	 */
+	public boolean showPreviousPage() {
 		AbstractWizardPage previousPage;
 		try {
 			previousPage = pageHistory.pop();
 		} catch (EmptyStackException e) {
 			// Previous page is null. Updating buttons and ignoring request.
 			updateButtons();
-			return;
+			return false;
 		}
 		setPage(previousPage);
+		return true;
 	}
 
 	private void setPage(AbstractWizardPage newPage) {
@@ -109,20 +121,44 @@ public class WizardController {
 	}
 
 	/**
-	 * Enables/disables the "next", "previous", and "finish" buttons based on the current page.
+	 * Gets the current page of the wizard.
+	 * 
+	 * @return the current page of the wizard
+	 */
+	public AbstractWizardPage getCurrentPage() {
+		return currentPage;
+	}
+
+	/**
+	 * Gets a list of the pages in the page history. The list does not contain the current page. Modifications to the
+	 * list does not modify the underlying page history.
+	 * 
+	 * @return the page history as a {@link List}
+	 */
+	public List<AbstractWizardPage> getPageHistoryList() {
+		return new ArrayList<AbstractWizardPage>(pageHistory);
+	}
+
+	/**
+	 * Enables/disables the "cancel", "next", "previous", and "finish" buttons of the current page based on the current
+	 * state of pages and the wizard.
 	 */
 	public void updateButtons() {
-		AbstractButton nextButton = wizard.getNextButton();
-		if (nextButton != null) {
-			nextButton.setEnabled(currentPage.isReadyForNextPage());
+		AbstractButton cancelButton = wizard.getCancelButton();
+		if (cancelButton != null) {
+			cancelButton.setEnabled(currentPage.isCancelAllowed());
 		}
 		AbstractButton previousButton = wizard.getPreviousButton();
 		if (previousButton != null) {
-			previousButton.setEnabled(!pageHistory.isEmpty());
+			previousButton.setEnabled(currentPage.isPreviousAllowed() && !pageHistory.isEmpty());
+		}
+		AbstractButton nextButton = wizard.getNextButton();
+		if (nextButton != null) {
+			nextButton.setEnabled(currentPage.isNextAllowed() && (currentPage.getNextPage() != null));
 		}
 		AbstractButton finishButton = wizard.getFinishButton();
 		if (finishButton != null) {
-			finishButton.setEnabled(currentPage.isReadyToFinish());
+			finishButton.setEnabled(currentPage.isFinishAllowed());
 		}
 	}
 

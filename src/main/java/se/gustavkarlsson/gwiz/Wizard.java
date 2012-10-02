@@ -30,6 +30,14 @@ public interface Wizard {
 	Container getWizardPageContainer();
 
 	/**
+	 * Gets the navigation button for "cancel". This is needed so that the {@link WizardController} can enable/disable
+	 * the button.
+	 * 
+	 * @return the "cancel" button
+	 */
+	AbstractButton getCancelButton();
+
+	/**
 	 * Gets the navigation button for "previous". This is used by the {@link WizardController} to navigate back in the
 	 * wizard.
 	 * 

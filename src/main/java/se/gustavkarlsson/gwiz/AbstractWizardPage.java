@@ -69,54 +69,58 @@ public abstract class AbstractWizardPage extends JPanel {
 		super();
 	}
 
-	final boolean isReadyForNextPage() {
-		return (getNextPage() != null) && isCompleted();
-	}
-
-	final boolean isReadyToFinish() {
-		return isCompleted() && canFinish();
-	}
-
 	void setWizardController(WizardController wizardController) {
 		this.wizardController = wizardController;
 	}
 
 	/**
-	 * Updates (enables/disables) the navigation buttons of the containing <code>Wizard</code>. <br />
-	 * <br />
-	 * <strong>Note: Must be called every time the conditions for going to the next page or finishing changes!</strong>
+	 * Gets this page's wizard controller. Useful for updating buttons.
+	 * 
+	 * @return this page's wizard controller
 	 */
-	protected final void updateButtons() {
-		wizardController.updateButtons();
+	protected WizardController getWizardController() {
+		return wizardController;
 	}
 
 	/**
 	 * Gets the page that will be displayed when the user clicks the "next" navigation button in the wizard. <br />
 	 * <br />
-	 * <em>Note: Actually allowing going to the next page also depends on {@link #getNextPage()}.</em>
+	 * <em>Note: Actually allowing going to the next page requires this method not returning <code>null</code> and
+	 * {@link #isNextAllowed()} to return <code>true</code>.</em>
 	 * 
 	 * @return the next page of the wizard
 	 */
 	protected abstract AbstractWizardPage getNextPage();
 
 	/**
-	 * Gets if the page is completed (i.e. ready for the next page or to finish). This should depend on the state of the
-	 * page. <br />
-	 * <br />
-	 * <em>Note: Actually allowing going to the next page or finishing also depends on {@link #canFinish()} and
-	 * {@link #getNextPage()} respectively.</em>
+	 * Gets if the page allows the wizard to cancel.
 	 * 
-	 * @return <code>true</code> if the page is completed, otherwise <code>false</code>
+	 * @return <code>true</code> if the page allows the wizard to cancel, otherwise <code>false</code>
 	 */
-	protected abstract boolean isCompleted();
+	protected abstract boolean isCancelAllowed();
 
 	/**
-	 * Gets if the page allows the wizard to finish. <br />
+	 * Gets if the page allows the wizard to go to the previous page.
+	 * 
+	 * @return <code>true</code> if the page allows the wizard to go to the previous page, otherwise <code>false</code>
+	 */
+	protected abstract boolean isPreviousAllowed();
+
+	/**
+	 * Gets if the page allows the wizard to go to the next page. <br />
 	 * <br />
-	 * <em>Note: Actually allowing finishing also depends on {@link #isCompleted()}.</em>
+	 * <em>Note: Actually allowing going to the next page requires this method to return <code>true</code> and
+	 * {@link #getNextPage()} not returning <code>null</code>.</em>
+	 * 
+	 * @return <code>true</code> if the page allows the wizard to go to the next page, otherwise <code>false</code>
+	 */
+	protected abstract boolean isNextAllowed();
+
+	/**
+	 * Gets if the page allows the wizard to finish.
 	 * 
 	 * @return <code>true</code> if the page allows the wizard to finish, otherwise <code>false</code>
 	 */
-	protected abstract boolean canFinish();
+	protected abstract boolean isFinishAllowed();
 
 }
