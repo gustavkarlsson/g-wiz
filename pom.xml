@@ -100,7 +100,6 @@
 				<configuration>
 					<nexusUrl>https://oss.sonatype.org</nexusUrl>
 					<serverId>sonatype-nexus-staging</serverId>
-					<buildPromotionProfileId>mrmadman</buildPromotionProfileId>
 				</configuration>
 				<executions>
 					<execution>
@@ -108,6 +107,7 @@
 							<goal>close</goal>
 							<goal>release</goal>
 						</goals>
+						<phase>release:perform</phase>
 					</execution>
 				</executions>
 			</plugin>
