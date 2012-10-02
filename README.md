@@ -1,7 +1,6 @@
 # g-wiz
 A Java Swing Wizard API
 
-
 ## Introduction
 g-wiz is an easy to use Wizard API for Java. I made it to suit my own needs, but it should come in handy for others as well.
 
@@ -9,16 +8,20 @@ g-wiz is an easy to use Wizard API for Java. I made it to suit my own needs, but
 ## Getting started
 Getting started with g-wiz is really simple. It can be done in 3 short steps.
 
-1.	Implement a couple of pages (here called `MyWizardPage`) by extending `AbstractWizardPage`.
-2.	Initialize the wizard and controller (here we use a standard implementation called `JFrameWizard`):
+1.	Implement a couple of pages by extending `AbstractWizardPage`.
+
+2.	Initialize the wizard and controller (in this example we use the provided `JFrameWizard`):
 
 		JFrameWizard wizard = JFrameWizard("My new wizard")
 		WizardController controller = new WizardController(wizard);
-3.	Start the wizard using the controller:
+		
+3.	Start the wizard using the controller and a page:
 
 		AbstractWizardPage startPage = new MyStartPage();
 		controller.startWizard(startPage);
 		wizard.setVisible(true);
+
+You can also check out the files in src/demo for a complete example.
 
 
 ## Class Descriptions
@@ -59,3 +62,6 @@ The order of the wizard pages is not determined by the wizard itself or some pre
 The page history consists of a stack of previously visited pages.
 
 Everytime the user presses "Next", the current page is put on top of the stack and it's `getNextPage()` is called. The return page is then set as the new "current page". The "Previous" button however, will always take you back to the last page by "popping" the stack and setting that page as the new "current page".
+
+
+## Download
