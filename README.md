@@ -10,12 +10,14 @@ Getting started
 --------------
 Getting started with g-wiz is really simple. It can be done in 4 short steps.
 
-1.  Implement a `Wizard` (extending `AbstractSimpleWizard` is the easiest way)
+1.	Implement a `Wizard` (extending `AbstractSimpleWizard` is the easiest way)
 2.	Implement a couple of pages by extending `AbstractWizardPage`.
-3.	Initialize the wizard:
+3.	Initialize the wizard:<p />
+
 		MyWizard wizard = MyWizard()
 		WizardController controller = new WizardController(wizard);
 4.	Start the wizard:
+
 		AbstractWizardPage startPage = new MyStartPage();
 		controller.startWizard(startPage);
 		wizard.setVisible(true);
