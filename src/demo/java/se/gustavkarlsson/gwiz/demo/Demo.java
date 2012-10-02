@@ -17,7 +17,7 @@ public class Demo {
 		WizardController wizardController = new WizardController(wizard);
 
 		// Start the wizard and show it
-		wizardController.startWizard(demoStartPage);
 		wizard.setVisible(true);
+		wizardController.startWizard(demoStartPage);
 	}
 }

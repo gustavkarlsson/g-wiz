@@ -16,8 +16,11 @@ import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.GridLayout;
 import java.awt.Insets;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.ContainerEvent;
+import java.awt.event.ContainerListener;
 import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractButton;
@@ -37,6 +40,8 @@ import se.gustavkarlsson.gwiz.Wizard;
  */
 public class JFrameWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
+
+	private static final Dimension defaultminimumSize = new Dimension(500, 500);
 
 	private final JPanel wizardPageContainer = new JPanel(new GridLayout(1, 1));
 	private final JButton cancelButton = new JButton("Cancel");
@@ -99,8 +104,14 @@ public class JFrameWizard extends JFrame implements Wizard {
 		setupComponents();
 		layoutComponents();
 
-		setMinimumSize(new Dimension(400, 350));
-		setLocation(200, 200);
+		setMinimumSize(defaultminimumSize);
+
+		// Center on screen
+		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
+		int xPosition = (screenSize.width / 2) - (defaultminimumSize.width / 2);
+		int yPosition = (screenSize.height / 2) - (defaultminimumSize.height / 2);
+		setLocation(xPosition, yPosition);
+
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
 
@@ -127,6 +138,8 @@ public class JFrameWizard extends JFrame implements Wizard {
 		previousButton.setMnemonic(KeyEvent.VK_P);
 		nextButton.setMnemonic(KeyEvent.VK_N);
 		finishButton.setMnemonic(KeyEvent.VK_F);
+
+		wizardPageContainer.addContainerListener(new MinimumSizeAdjuster());
 	}
 
 	/**
@@ -204,6 +217,26 @@ public class JFrameWizard extends JFrame implements Wizard {
 	@Override
 	public JButton getFinishButton() {
 		return finishButton;
+	}
+
+	private class MinimumSizeAdjuster implements ContainerListener {
+
+		@Override
+		public void componentAdded(ContainerEvent e) {
+			Dimension currentSize = getSize();
+			Dimension preferredSize = getPreferredSize();
+
+			Dimension newSize = new Dimension(currentSize);
+			newSize.width = Math.max(currentSize.width, preferredSize.width);
+			newSize.height = Math.max(currentSize.height, preferredSize.height);
+
+			setMinimumSize(newSize);
+		}
+
+		@Override
+		public void componentRemoved(ContainerEvent e) {
+		}
+
 	}
 
 }
