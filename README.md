@@ -62,6 +62,3 @@ The order of the wizard pages is not determined by the wizard itself or some pre
 The page history consists of a stack of previously visited pages.
 
 Everytime the user presses "Next", the current page is put on top of the stack and it's `getNextPage()` is called. The return page is then set as the new "current page". The "Previous" button however, will always take you back to the last page by "popping" the stack and setting that page as the new "current page".
-
-
-## Download
