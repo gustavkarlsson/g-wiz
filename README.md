@@ -70,7 +70,7 @@ The best way to download g-wiz is with [Apache Maven](http://maven.apache.org). 
 	<dependency>
 		<groupId>se.gustavkarlsson</groupId>
 		<artifactId>g-wiz</artifactId>
-		<version>1.0.0</version>
+		<version>1.0.1</version>
 	</dependency>
 
 
