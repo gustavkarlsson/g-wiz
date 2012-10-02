@@ -12,7 +12,10 @@ package se.gustavkarlsson.gwiz.wizards;
 
 import java.awt.Dimension;
 import java.awt.GraphicsConfiguration;
+import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.GridLayout;
+import java.awt.Insets;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.KeyEvent;
@@ -23,7 +26,6 @@ import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
-import javax.swing.SpringLayout;
 
 import se.gustavkarlsson.gwiz.Wizard;
 
@@ -131,41 +133,52 @@ public class JFrameWizard extends JFrame implements Wizard {
 	 * Lays out the components in the wizards content pane.
 	 */
 	private void layoutComponents() {
-		SpringLayout springLayout = new SpringLayout();
-		getContentPane().setLayout(springLayout);
+		GridBagLayout layout = new GridBagLayout();
+		layout.rowWeights = new double[]{1.0, 0.0, 0.0};
+		layout.columnWeights = new double[]{1.0, 0.0, 0.0, 0.0, 0.0};
+		layout.rowHeights = new int[] {0, 0, 0};
+		layout.columnWidths = new int[] {0, 0, 0, 0, 0};
+		getContentPane().setLayout(layout);
 
-		int padding = 5;
+		GridBagConstraints wizardPageContainerConstraint = new GridBagConstraints();
+		wizardPageContainerConstraint.gridwidth = 5;
+		wizardPageContainerConstraint.fill = GridBagConstraints.BOTH;
+		wizardPageContainerConstraint.gridx = 0;
+		wizardPageContainerConstraint.gridy = 0;
+		wizardPageContainerConstraint.insets = new Insets(5, 5, 5, 5);
+		getContentPane().add(wizardPageContainer, wizardPageContainerConstraint);
 
-		springLayout.putConstraint(SpringLayout.EAST, wizardPageContainer, -padding, SpringLayout.EAST,
-				getContentPane());
-		springLayout.putConstraint(SpringLayout.NORTH, wizardPageContainer, padding, SpringLayout.NORTH,
-				getContentPane());
-		springLayout
-		.putConstraint(SpringLayout.WEST, wizardPageContainer, padding, SpringLayout.WEST, getContentPane());
-		add(wizardPageContainer);
+		GridBagConstraints separatorConstraints = new GridBagConstraints();
+		separatorConstraints.gridwidth = 5;
+		separatorConstraints.fill = GridBagConstraints.HORIZONTAL;
+		separatorConstraints.gridx = 0;
+		separatorConstraints.gridy = 1;
+		separatorConstraints.insets = new Insets(5, 5, 5, 5);
+		getContentPane().add(new JSeparator(), separatorConstraints);
 
-		springLayout.putConstraint(SpringLayout.SOUTH, finishButton, -padding, SpringLayout.SOUTH, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, finishButton, -padding, SpringLayout.EAST, getContentPane());
-		add(finishButton);
+		GridBagConstraints cancelButtonConstraints = new GridBagConstraints();
+		cancelButtonConstraints.gridx = 1;
+		cancelButtonConstraints.gridy = 2;
+		cancelButtonConstraints.insets = new Insets(5, 5, 5, 0);
+		getContentPane().add(cancelButton, cancelButtonConstraints);
 
-		springLayout.putConstraint(SpringLayout.NORTH, nextButton, 0, SpringLayout.NORTH, finishButton);
-		springLayout.putConstraint(SpringLayout.EAST, nextButton, -padding, SpringLayout.WEST, finishButton);
-		add(nextButton);
+		GridBagConstraints previousButtonConstraints = new GridBagConstraints();
+		previousButtonConstraints.gridx = 2;
+		previousButtonConstraints.gridy = 2;
+		previousButtonConstraints.insets = new Insets(5, 5, 5, 0);
+		getContentPane().add(previousButton, previousButtonConstraints);
 
-		springLayout.putConstraint(SpringLayout.SOUTH, previousButton, 0, SpringLayout.SOUTH, finishButton);
-		springLayout.putConstraint(SpringLayout.EAST, previousButton, -padding, SpringLayout.WEST, nextButton);
-		add(previousButton);
+		GridBagConstraints nextButtonConstraints = new GridBagConstraints();
+		nextButtonConstraints.gridx = 3;
+		nextButtonConstraints.gridy = 2;
+		nextButtonConstraints.insets = new Insets(5, 5, 5, 0);
+		getContentPane().add(nextButton, nextButtonConstraints);
 
-		springLayout.putConstraint(SpringLayout.NORTH, cancelButton, 0, SpringLayout.NORTH, finishButton);
-		springLayout.putConstraint(SpringLayout.EAST, cancelButton, -padding, SpringLayout.WEST, previousButton);
-		add(cancelButton);
-
-		JSeparator separator = new JSeparator();
-		springLayout.putConstraint(SpringLayout.WEST, separator, 0, SpringLayout.WEST, getContentPane());
-		springLayout.putConstraint(SpringLayout.EAST, separator, 0, SpringLayout.EAST, getContentPane());
-		springLayout.putConstraint(SpringLayout.SOUTH, wizardPageContainer, -padding, SpringLayout.NORTH, separator);
-		springLayout.putConstraint(SpringLayout.SOUTH, separator, -padding, SpringLayout.NORTH, finishButton);
-		add(separator);
+		GridBagConstraints finishButtonConstraints = new GridBagConstraints();
+		finishButtonConstraints.gridx = 4;
+		finishButtonConstraints.gridy = 2;
+		finishButtonConstraints.insets = new Insets(5, 5, 5, 5);
+		getContentPane().add(finishButton, finishButtonConstraints);
 	}
 
 	@Override
