@@ -1,5 +1,5 @@
 # g-wiz
-A Java Swing Wizard API
+A Java Swing wizard framework
 
 ## Introduction
 g-wiz is an easy to use Wizard API for Java. I made it to suit my own needs, but it should come in handy for others as well.
