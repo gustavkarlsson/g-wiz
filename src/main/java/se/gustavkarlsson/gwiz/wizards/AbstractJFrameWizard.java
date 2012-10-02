@@ -8,7 +8,7 @@
  * Contributors:
  *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
  ******************************************************************************/
-package se.gustavkarlsson.gwiz;
+package se.gustavkarlsson.gwiz.wizards;
 
 import java.awt.Dimension;
 import java.awt.FlowLayout;
@@ -25,13 +25,15 @@ import javax.swing.JPanel;
 import javax.swing.JSeparator;
 import javax.swing.SpringLayout;
 
+import se.gustavkarlsson.gwiz.Wizard;
+
 /**
  * A very simple <code>Wizard</code> implementation that suits the most basic needs. Extends {@link JFrame} and has
  * navigation buttons at the bottom.
  * 
  * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
-public abstract class AbstractSimpleWizard extends JFrame implements Wizard {
+public abstract class AbstractJFrameWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
 
 	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
@@ -49,7 +51,7 @@ public abstract class AbstractSimpleWizard extends JFrame implements Wizard {
 	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
-	public AbstractSimpleWizard(String title, GraphicsConfiguration gc) {
+	public AbstractJFrameWizard(String title, GraphicsConfiguration gc) {
 		super(title, gc);
 		setupWizard();
 	}
@@ -61,7 +63,7 @@ public abstract class AbstractSimpleWizard extends JFrame implements Wizard {
 	 *            the title of the frame
 	 * @see JFrame
 	 */
-	public AbstractSimpleWizard(String title) {
+	public AbstractJFrameWizard(String title) {
 		super(title);
 		setupWizard();
 	}
@@ -73,7 +75,7 @@ public abstract class AbstractSimpleWizard extends JFrame implements Wizard {
 	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
-	public AbstractSimpleWizard(GraphicsConfiguration gc) {
+	public AbstractJFrameWizard(GraphicsConfiguration gc) {
 		super(gc);
 		setupWizard();
 	}
@@ -83,7 +85,7 @@ public abstract class AbstractSimpleWizard extends JFrame implements Wizard {
 	 * 
 	 * @see JFrame
 	 */
-	public AbstractSimpleWizard() {
+	public AbstractJFrameWizard() {
 		super();
 		setupWizard();
 	}
