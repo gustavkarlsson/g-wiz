@@ -24,7 +24,7 @@
 	
 	<name>g-wiz</name>
 	<url>https://github.com/gustavkarlsson/g-wiz</url>
-	<description>A Java Swing Wizard API</description>
+	<description>A Java Swing wizard framework</description>
 
 	<developers>
 		<developer>

@@ -2,7 +2,7 @@
 A Java Swing wizard framework
 
 ## Introduction
-g-wiz is an easy to use Wizard framework for Java. I made it to suit my own needs, but it should come in handy for others as well.
+g-wiz is an easy to use wizard framework for Java. I made it to suit my own needs, but it should come in handy for others as well.
 
 
 ## Getting started
