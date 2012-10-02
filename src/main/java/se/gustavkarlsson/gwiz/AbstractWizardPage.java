@@ -74,12 +74,10 @@ public abstract class AbstractWizardPage extends JPanel {
 	}
 
 	/**
-	 * Gets this page's wizard controller. Useful for updating buttons.
-	 * 
-	 * @return this page's wizard controller
+	 * Updates the wizards navigation buttons.
 	 */
-	protected WizardController getWizardController() {
-		return wizardController;
+	public void updateWizardButtons() {
+		wizardController.updateButtons();
 	}
 
 	/**
