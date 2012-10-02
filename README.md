@@ -18,8 +18,8 @@ Getting started with g-wiz is really simple. It can be done in 3 short steps.
 3.	Start the wizard using the controller and a page:
 
 		AbstractWizardPage startPage = new MyStartPage();
-		controller.startWizard(startPage);
 		wizard.setVisible(true);
+		controller.startWizard(startPage);
 
 You can also check out the files in src/demo for a complete example.
 
@@ -65,7 +65,7 @@ Everytime the user presses "Next", the current page is put on top of the stack a
 
 
 ## Download
-The best way to use g-wiz is with [Apache Maven](http://maven.apache.org). Just add this to the <dependencies> in your `pom.xml`:
+The best way to download g-wiz is with [Apache Maven](http://maven.apache.org). Just add this to the <dependencies> in your `pom.xml`:
 
 	<dependency>
 		<groupId>se.gustavkarlsson</groupId>
@@ -74,4 +74,4 @@ The best way to use g-wiz is with [Apache Maven](http://maven.apache.org). Just 
 	</dependency>
 
 
-If you just want to download the files manually, you can find jars, sources, and javadoc in the [Sonatype OSS Repository](https://oss.sonatype.org/content/groups/public/se/gustavkarlsson/g-wiz/).
+If you want to download the files manually, you can find jars, sources, and javadoc in the [Sonatype OSS Repository](https://oss.sonatype.org/content/groups/public/se/gustavkarlsson/g-wiz/).
