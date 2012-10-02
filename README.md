@@ -35,4 +35,4 @@ To use g-wiz, you need to familiarize yourself with 3 classes:
 *	**AbstractWizardPage:**
 	Represents a page in the wizard. Implement it as you would a regular `JPanel`, and make sure to override `getNextPage()`, `isCancelAllowed()`, `isPreviousAllowed()`, `isNextAllowed()`, and `isFinishAllowed()`. The method signatures should be pretty self explanatory and they are used by WizardController to update the navigation buttons.
 	
-	*Note: `getNextPage()` can get called multiple times by `WizardController` to check if there is a next page to show, so it's probably not a good idea to create a new next page every time each time it's called.*
+	*Note: `getNextPage()` can get called multiple times by `WizardController` to check if there is a next page to show, so it's probably not a good idea to create a new "next page" every time each time it's called.*
