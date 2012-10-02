@@ -33,7 +33,7 @@ import se.gustavkarlsson.gwiz.Wizard;
  * 
  * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
-public abstract class AbstractJFrameWizard extends JFrame implements Wizard {
+public class JFrameWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
 
 	private final JPanel wizardPageContainer = new JPanel(new FlowLayout());
@@ -43,7 +43,7 @@ public abstract class AbstractJFrameWizard extends JFrame implements Wizard {
 	private final JButton finishButton = new JButton("Finish");
 
 	/**
-	 * Creates an <code>AbstractSimpleWizard</code> with a title and <code>GraphicsConfiguration</code>.
+	 * Creates an <code>JFrameWizard</code> with a title and <code>GraphicsConfiguration</code>.
 	 * 
 	 * @param title
 	 *            the title of the frame
@@ -51,41 +51,41 @@ public abstract class AbstractJFrameWizard extends JFrame implements Wizard {
 	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
-	public AbstractJFrameWizard(String title, GraphicsConfiguration gc) {
+	public JFrameWizard(String title, GraphicsConfiguration gc) {
 		super(title, gc);
 		setupWizard();
 	}
 
 	/**
-	 * Creates an <code>AbstractSimpleWizard</code> with a title.
+	 * Creates an <code>JFrameWizard</code> with a title.
 	 * 
 	 * @param title
 	 *            the title of the frame
 	 * @see JFrame
 	 */
-	public AbstractJFrameWizard(String title) {
+	public JFrameWizard(String title) {
 		super(title);
 		setupWizard();
 	}
 
 	/**
-	 * Creates an <code>AbstractSimpleWizard</code> with a {@link GraphicsConfiguration}.
+	 * Creates an <code>JFrameWizard</code> with a {@link GraphicsConfiguration}.
 	 * 
 	 * @param gc
 	 *            the <code>GraphicsConfiguration</code> of the frame
 	 * @see JFrame
 	 */
-	public AbstractJFrameWizard(GraphicsConfiguration gc) {
+	public JFrameWizard(GraphicsConfiguration gc) {
 		super(gc);
 		setupWizard();
 	}
 
 	/**
-	 * Creates an <code>AbstractSimpleWizard</code>.
+	 * Creates an <code>JFrameWizard</code>.
 	 * 
 	 * @see JFrame
 	 */
-	public AbstractJFrameWizard() {
+	public JFrameWizard() {
 		super();
 		setupWizard();
 	}
