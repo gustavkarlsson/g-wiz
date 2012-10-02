@@ -18,9 +18,6 @@ import java.util.Stack;
 
 import javax.swing.AbstractButton;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * A controller for a {@link Wizard}. Used to control navigation, setting the correct {@link AbstractWizardPage}, and
  * keeping tack of history.
@@ -28,7 +25,6 @@ import org.slf4j.LoggerFactory;
  * @author Gustav Karlsson <gustav.karlsson@gmail.com>
  */
 public class WizardController {
-	private static final Logger logger = LoggerFactory.getLogger(WizardController.class);
 
 	private final Wizard wizard;
 	private final Stack<AbstractWizardPage> pageHistory = new Stack<AbstractWizardPage>();
@@ -42,9 +38,7 @@ public class WizardController {
 	 */
 	public WizardController(Wizard wizard) {
 		if (wizard == null) {
-			RuntimeException e = new IllegalArgumentException("wizard can't be null");
-			logger.error("wizard is null.", e);
-			throw e;
+			throw new IllegalArgumentException("wizard can't be null");
 		}
 		this.wizard = wizard;
 		setupNavigationButtons();
@@ -57,7 +51,7 @@ public class WizardController {
 
 	private void showNextPage(AbstractWizardPage nextPage) {
 		if (nextPage == null) {
-			logger.error("Next page is null. Updating buttons and ignoring request.");
+			// Next page is null. Updating buttons and ignoring request.
 			updateButtons();
 			return;
 		}
@@ -76,7 +70,7 @@ public class WizardController {
 		try {
 			previousPage = pageHistory.pop();
 		} catch (EmptyStackException e) {
-			logger.error("Previous page is null. Updating buttons and ignoring request.");
+			// Previous page is null. Updating buttons and ignoring request.
 			updateButtons();
 			return;
 		}
@@ -104,9 +98,7 @@ public class WizardController {
 	 */
 	public void startWizard(AbstractWizardPage startPage) {
 		if (startPage == null) {
-			RuntimeException e = new IllegalArgumentException("startPage can't be null");
-			logger.error("startPage is null.", e);
-			throw e;
+			throw new IllegalArgumentException("startPage can't be null");
 		}
 		if (currentPage != null) {
 			wizard.getWizardPageContainer().remove(currentPage);

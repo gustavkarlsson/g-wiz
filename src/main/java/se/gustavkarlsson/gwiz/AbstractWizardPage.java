@@ -14,9 +14,6 @@ import java.awt.LayoutManager;
 
 import javax.swing.JPanel;
 
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 /**
  * A page in a <code>Wizard</code>. Extends {@link JPanel}.
  * 
@@ -24,7 +21,6 @@ import org.slf4j.LoggerFactory;
  */
 public abstract class AbstractWizardPage extends JPanel {
 	private static final long serialVersionUID = 1000143453163604518L;
-	private static final Logger logger = LoggerFactory.getLogger(AbstractWizardPage.class);
 
 	private WizardController wizardController;
 
@@ -91,9 +87,6 @@ public abstract class AbstractWizardPage extends JPanel {
 	 * <strong>Note: Must be called every time the conditions for going to the next page or finishing changes!</strong>
 	 */
 	protected final void updateButtons() {
-		if (wizardController.getCurrentPage() != this) {
-			logger.warn("{} is not the current page of it's controller.", this);
-		}
 		wizardController.updateButtons();
 	}
 
