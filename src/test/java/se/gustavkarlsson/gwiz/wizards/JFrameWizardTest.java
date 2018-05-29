@@ -1,10 +1,9 @@
-package se.gustavkarlsson.gwiz.demo;
+package se.gustavkarlsson.gwiz.wizards;
 
 import se.gustavkarlsson.gwiz.AbstractWizardPage;
 import se.gustavkarlsson.gwiz.WizardController;
-import se.gustavkarlsson.gwiz.wizards.JFrameWizard;
 
-public class Demo {
+public class JFrameWizardTest {
 
 	public static void main(String[] args) {
 		// Create a new wizard (this one is based on a JFrame)

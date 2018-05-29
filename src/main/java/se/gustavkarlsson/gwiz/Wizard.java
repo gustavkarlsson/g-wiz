@@ -7,12 +7,14 @@
  * 
  * Contributors:
  *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
+ *     Adriano Henrique Rossette Leite <contact@adrianohrl.tech>
  ******************************************************************************/
 package se.gustavkarlsson.gwiz;
 
 import java.awt.Container;
 
 import javax.swing.AbstractButton;
+import javax.swing.JButton;
 
 /**
  * An interface for creating wizards.
@@ -51,7 +53,7 @@ public interface Wizard {
 	 * 
 	 * @return the "next" button
 	 */
-	AbstractButton getNextButton();
+	JButton getNextButton();
 
 	/**
 	 * Gets the navigation button for "finish". This is needed so that the {@link WizardController} can enable/disable
@@ -59,6 +61,13 @@ public interface Wizard {
 	 * 
 	 * @return the "finish" button
 	 */
-	AbstractButton getFinishButton();
+	JButton getFinishButton();
+        
+        /**
+         * Sets the wizard's default button. Whenever an "Enter" key is pressed this button is virtually pressed.
+         * 
+         * @param button the "Enter" key event listener button
+         */
+        void setDefautButton(JButton button);
 
 }
