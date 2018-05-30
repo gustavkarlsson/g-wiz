@@ -6,8 +6,8 @@
   http://www.gnu.org/licenses/gpl.html
   
   Contributors:
-      Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
-      Adriano Henrique Rossette Leite <contact@adrianohrl.tech>
+      Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
+      Adriano Henrique Rossette Leite (contact@adrianohrl.tech)
 -->
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
@@ -20,7 +20,7 @@
 	
 	<groupId>se.gustavkarlsson</groupId>
 	<artifactId>g-wiz</artifactId>
-	<version>1.0.3-SNAPSHOT</version>
+	<version>1.0.4</version>
 	<packaging>jar</packaging>
 	
 	<name>g-wiz</name>
@@ -114,12 +114,4 @@
 			</plugin>
 		</plugins>
 	</build>
-    <dependencies>
-        <dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>4.10</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies>
 </project>

@@ -6,8 +6,8 @@
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
- *     Adriano Henrique Rossette Leite <contact@adrianohrl.tech>
+ *     Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
+ *     Adriano Henrique Rossette Leite (contact@adrianohrl.tech)
  ******************************************************************************/
 package se.gustavkarlsson.gwiz.wizards;
 
@@ -39,7 +39,7 @@ import se.gustavkarlsson.gwiz.Wizard;
  * A very simple <code>Wizard</code> implementation that suits the most basic needs. Extends {@link JFrame} and has
  * navigation buttons at the bottom.
  * 
- * @author Gustav Karlsson <gustav.karlsson@gmail.com>
+ * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
 public class JFrameWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
@@ -231,10 +231,10 @@ public class JFrameWizard extends JFrame implements Wizard {
 		return finishButton;
 	}
 
-    @Override
-    public void setDefautButton(JButton button) {
-        getRootPane().setDefaultButton(button);
-    }
+        @Override
+        public void setDefautButton(JButton button) {
+            getRootPane().setDefaultButton(button);
+        }
 
 	private class MinimumSizeAdjuster implements ContainerListener {
 

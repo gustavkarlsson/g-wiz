@@ -6,8 +6,8 @@
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
- *     Adriano Henrique Rossette Leite <contact@adrianohrl.tech>
+ *     Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
+ *     Adriano Henrique Rossette Leite (contact@adrianohrl.tech)
  ******************************************************************************/
 package se.gustavkarlsson.gwiz;
 
@@ -26,7 +26,7 @@ import javax.swing.JButton;
  * A controller for a {@link Wizard}. Used to control navigation, setting the correct {@link AbstractWizardPage}, and
  * keeping tack of history.
  * 
- * @author Gustav Karlsson <gustav.karlsson@gmail.com>
+ * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
 public class WizardController {
 

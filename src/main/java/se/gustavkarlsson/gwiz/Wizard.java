@@ -6,8 +6,8 @@
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
- *     Adriano Henrique Rossette Leite <contact@adrianohrl.tech>
+ *     Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
+ *     Adriano Henrique Rossette Leite (contact@adrianohrl.tech)
  ******************************************************************************/
 package se.gustavkarlsson.gwiz;
 
@@ -19,7 +19,7 @@ import javax.swing.JButton;
 /**
  * An interface for creating wizards.
  * 
- * @author Gustav Karlsson <gustav.karlsson@gmail.com>
+ * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
 public interface Wizard {
 

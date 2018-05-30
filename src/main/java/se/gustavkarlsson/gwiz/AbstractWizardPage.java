@@ -6,7 +6,7 @@
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
+ *     Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
  ******************************************************************************/
 package se.gustavkarlsson.gwiz;
 
@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 /**
  * A page in a <code>Wizard</code>. Extends {@link JPanel}.
  * 
- * @author Gustav Karlsson <gustav.karlsson@gmail.com>
+ * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
 public abstract class AbstractWizardPage extends JPanel {
 	private static final long serialVersionUID = 1000143453163604518L;
@@ -41,9 +41,9 @@ public abstract class AbstractWizardPage extends JPanel {
 	/**
 	 * Create a new double-buffered <code>AbstractWizardPage</code> with the specified <code>LayoutManager</code>
 	 * 
-	 * @param layout
-	 *            the <code>LayoutManager</code> to use
-	 * @see JPanel
+	 * @param layout  
+         *          the <code>LayoutManager</code> to use
+         * @see JPanel
 	 */
 	public AbstractWizardPage(LayoutManager layout) {
 		super(layout);
@@ -81,8 +81,8 @@ public abstract class AbstractWizardPage extends JPanel {
 	}
 
 	/**
-	 * Gets the page that will be displayed when the user clicks the "next" navigation button in the wizard. <br />
-	 * <br />
+	 * <p> Gets the page that will be displayed when the user clicks the "next" navigation button in the wizard. </p>
+	 * 
 	 * <em>Note: Actually allowing going to the next page requires this method not returning <code>null</code> and
 	 * {@link #isNextAllowed()} to return <code>true</code>.</em>
 	 * 
@@ -105,8 +105,8 @@ public abstract class AbstractWizardPage extends JPanel {
 	protected abstract boolean isPreviousAllowed();
 
 	/**
-	 * Gets if the page allows the wizard to go to the next page. <br />
-	 * <br />
+	 * <p>Gets if the page allows the wizard to go to the next page. </p>
+	 * 
 	 * <em>Note: Actually allowing going to the next page requires this method to return <code>true</code> and
 	 * {@link #getNextPage()} not returning <code>null</code>.</em>
 	 * 
