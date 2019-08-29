@@ -1,11 +1,28 @@
-# Ignore dot-files
-.*
+# NetBeans specific #
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
 
-# But not the .gitignore file!
-!.gitignore
+# Class Files #
+*.class
 
-# Ignore temporary editor files
+# Package Files #
+*.jar
+*.war
+*.ear
+
+# Maven #
+.classpath
+.project
+.settings/
+target/
+
+# Vim temporary files #
 *~
 
-# Ignore maven target directory
-target/
+# Log4j #
+*.log

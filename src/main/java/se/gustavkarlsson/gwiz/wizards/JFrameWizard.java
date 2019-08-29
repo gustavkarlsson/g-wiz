@@ -6,7 +6,8 @@
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
+ *     Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
+ *     Adriano Henrique Rossette Leite (contact@adrianohrl.tech)
  ******************************************************************************/
 package se.gustavkarlsson.gwiz.wizards;
 
@@ -25,10 +26,12 @@ import java.awt.event.KeyEvent;
 
 import javax.swing.AbstractButton;
 import javax.swing.JButton;
+import javax.swing.JComponent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JSeparator;
+import javax.swing.KeyStroke;
 
 import se.gustavkarlsson.gwiz.Wizard;
 
@@ -36,7 +39,7 @@ import se.gustavkarlsson.gwiz.Wizard;
  * A very simple <code>Wizard</code> implementation that suits the most basic needs. Extends {@link JFrame} and has
  * navigation buttons at the bottom.
  * 
- * @author Gustav Karlsson <gustav.karlsson@gmail.com>
+ * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
 public class JFrameWizard extends JFrame implements Wizard {
 	private static final long serialVersionUID = 2818290889333414291L;
@@ -108,9 +111,18 @@ public class JFrameWizard extends JFrame implements Wizard {
 
 		// Center on screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int xPosition = (screenSize.width / 2) - (defaultminimumSize.width / 2);
-		int yPosition = (screenSize.height / 2) - (defaultminimumSize.height / 2);
+		int xPosition = (screenSize.width - defaultminimumSize.width) / 2;
+		int yPosition = (screenSize.height - defaultminimumSize.height) / 2;
 		setLocation(xPosition, yPosition);
+                
+                // Whenever the Escape Key Event happens, the JFrameWizard is closed.
+                ActionListener escKeyListener = new ActionListener() {
+                    @Override
+                    public void actionPerformed(ActionEvent e) {
+                        dispose();
+                    }
+                };
+                getRootPane().registerKeyboardAction(escKeyListener, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_IN_FOCUSED_WINDOW);
 
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 	}
@@ -218,6 +230,11 @@ public class JFrameWizard extends JFrame implements Wizard {
 	public JButton getFinishButton() {
 		return finishButton;
 	}
+
+        @Override
+        public void setDefautButton(JButton button) {
+            getRootPane().setDefaultButton(button);
+        }
 
 	private class MinimumSizeAdjuster implements ContainerListener {
 

@@ -1,24 +1,22 @@
-package se.gustavkarlsson.gwiz.demo;
+package se.gustavkarlsson.gwiz.wizards;
 
 import java.awt.FlowLayout;
-import java.awt.Label;
 
 import se.gustavkarlsson.gwiz.AbstractWizardPage;
 
 @SuppressWarnings("serial")
-public class StartPage extends AbstractWizardPage {
+public class EndPage extends AbstractWizardPage {
 
-	private final AbstractWizardPage nextPage = new MiddlePage();
+	private EndPanel panel = new EndPanel(this);
 
-	public StartPage() {
+	public EndPage() {
 		setLayout(new FlowLayout());
-
-		add(new Label("This is the first page of the wizard. Press Next to continue."));
+		add(panel);
 	}
 
 	@Override
 	protected AbstractWizardPage getNextPage() {
-		return nextPage;
+		return null;
 	}
 
 	@Override
@@ -33,12 +31,13 @@ public class StartPage extends AbstractWizardPage {
 
 	@Override
 	protected boolean isNextAllowed() {
-		return true;
+		return false;
 	}
 
 	@Override
-	protected boolean isFinishAllowed() {
-		return false;
+	protected
+	boolean isFinishAllowed() {		
+		return panel.saidYes();
 	}
 
 }

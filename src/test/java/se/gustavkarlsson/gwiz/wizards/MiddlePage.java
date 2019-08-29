@@ -1,4 +1,4 @@
-package se.gustavkarlsson.gwiz.demo;
+package se.gustavkarlsson.gwiz.wizards;
 
 import java.awt.Checkbox;
 import java.awt.GridLayout;

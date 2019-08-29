@@ -6,7 +6,8 @@
  * http://www.gnu.org/licenses/gpl.html
  * 
  * Contributors:
- *     Gustav Karlsson <gustav.karlsson@gmail.com> - initial API and implementation
+ *     Gustav Karlsson (gustav.karlsson@gmail.com) - initial API and implementation
+ *     Adriano Henrique Rossette Leite (contact@adrianohrl.tech)
  ******************************************************************************/
 package se.gustavkarlsson.gwiz;
 
@@ -19,12 +20,13 @@ import java.util.List;
 import java.util.Stack;
 
 import javax.swing.AbstractButton;
+import javax.swing.JButton;
 
 /**
  * A controller for a {@link Wizard}. Used to control navigation, setting the correct {@link AbstractWizardPage}, and
  * keeping tack of history.
  * 
- * @author Gustav Karlsson <gustav.karlsson@gmail.com>
+ * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
 public class WizardController {
 
@@ -152,13 +154,20 @@ public class WizardController {
 		if (previousButton != null) {
 			previousButton.setEnabled(currentPage.isPreviousAllowed() && !pageHistory.isEmpty());
 		}
-		AbstractButton nextButton = wizard.getNextButton();
+                wizard.setDefautButton(null);
+		JButton nextButton = wizard.getNextButton();
 		if (nextButton != null) {
 			nextButton.setEnabled(currentPage.isNextAllowed() && (currentPage.getNextPage() != null));
+                        if (nextButton.isEnabled()) {
+                                wizard.setDefautButton(nextButton);
+                        }
 		}
-		AbstractButton finishButton = wizard.getFinishButton();
+                JButton finishButton = wizard.getFinishButton();
 		if (finishButton != null) {
 			finishButton.setEnabled(currentPage.isFinishAllowed());
+                        if (finishButton.isEnabled()) {
+                                wizard.setDefautButton(finishButton);
+                        }
 		}
 	}
 
