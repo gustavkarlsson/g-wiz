@@ -111,8 +111,8 @@ public class JFrameWizard extends JFrame implements Wizard {
 
 		// Center on screen
 		Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
-		int xPosition = (screenSize.width / 2) - (defaultminimumSize.width / 2);
-		int yPosition = (screenSize.height / 2) - (defaultminimumSize.height / 2);
+		int xPosition = (screenSize.width - defaultminimumSize.width) / 2;
+		int yPosition = (screenSize.height - defaultminimumSize.height) / 2;
 		setLocation(xPosition, yPosition);
                 
                 // Whenever the Escape Key Event happens, the JFrameWizard is closed.

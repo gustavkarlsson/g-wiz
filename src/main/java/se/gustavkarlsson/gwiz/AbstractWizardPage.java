@@ -19,7 +19,8 @@ import javax.swing.JPanel;
  * 
  * @author Gustav Karlsson (gustav.karlsson@gmail.com)
  */
-public abstract class AbstractWizardPage extends JPanel {
+public abstract class AbstractWizardPage extends JPanel implements MandatoryFieldChangeListener {
+    
 	private static final long serialVersionUID = 1000143453163604518L;
 
 	private WizardController wizardController;
@@ -79,6 +80,16 @@ public abstract class AbstractWizardPage extends JPanel {
 	public void updateWizardButtons() {
 		wizardController.updateButtons();
 	}
+
+        /**
+         * Triggered when a mandatory field of the wizard page changes.
+         * 
+         * @param evt encapsulates the component that has been changed
+         */
+        @Override
+        public void mandatoryFieldChanged(MandatoryFieldChangeEvent evt) {
+                wizardController.updateButtons();
+        }      
 
 	/**
 	 * <p> Gets the page that will be displayed when the user clicks the "next" navigation button in the wizard. </p>
